@@ -1,5 +1,9 @@
 #include <queue>
 #include <string>
+#include <vector>
+#include <climits>
+#include <iostream>
+using namespace std;
 
 struct GraphNode {
 	char key;
@@ -31,36 +35,35 @@ struct DNode {
 	}
 };
 
-class BetterPriorityQueue: public priority_queue<DNode, vector<DNode>, greater<DNode>>::priority_queue {
-	public:
-		void update();
-		bool contains(GraphNode *input);
-		BetterPriorityQueue();
-};
-
-
 class Graph{
 	
 	public:
 		~Graph();
 	
-		GraphNode *AddNode(char key, int data = 0);
-		GraphEdge *AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight = 0);
+		GraphNode *AddNode(char key, int data);
+		GraphNode *AddNode(char key);
+		GraphEdge *AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight);
 		
 		string NodesToString() const;
 		string ToString() const;
 
-		static string GraphNodeToString(const GraphNode *gn);
-		static string GraphEdgeToString(const GraphEdge *ge);
+		static string GraphNodeToString(GraphNode const* gn);
+		static string GraphEdgeToString(GraphEdge const* ge);
 		
 		
 		const vector<GraphEdge*>& GetEdges(const GraphNode *gn) const;
 		const vector<GraphNode*>& GetNodes() const;
-		const GraphNode* NodeAt(unsigned int idx) const {GraphNode* temp = &nodes[idx]; return temp;}
+		//const GraphNode* NodeAt(unsigned int idx) const {GraphNode* temp = &nodes[idx].node; return temp;}
 		size_t Size() const {size_t output = nodes.size(); return output;}
 
 	private:
-		BetterPriorityQueue<DNode> nodes(26);
-		BetterPriorityQueue<vector<GraphEdge>> edges(26, 26);
+		vector<DNode> nodes;
+		vector<vector<GraphEdge*>> edges;
 
+};
+
+class BetterPriorityQueue: public priority_queue<DNode, vector<DNode>, greater<DNode>>::priority_queue {
+	public:
+		void Update();
+		int Contains(DNode input);
 };

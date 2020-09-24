@@ -1,7 +1,6 @@
-#include <iostream>
 #include "Graph.h"
-//#include "BetterPriorityQueue.h"
 #include <cassert>
+
 using namespace std;
 
 void ContainsTest() {
@@ -13,9 +12,9 @@ void ContainsTest() {
 	GraphNode *a = g.AddNode('a');
 	DNode n;
 	n.node = a;
-	q.push(a);
+	q.push(n);
 
-	assert(q.Contains(a) == 0);
+	assert(q.Contains(n) == 0);
 	
 
 	// more tests go here!
@@ -26,7 +25,7 @@ void ContainsTest() {
 
 
 
-void UpdateTest() {
+/*void UpdateTest() {
 	cout << "Testing Update Helper Method..." << endl;
 	
 	Graph g = Graph();
@@ -64,12 +63,12 @@ void UpdateTest() {
 	
 	
 	cout << "PASSED!" << endl;
-}
+}*/
 
 int main(){
 	
 	ContainsTest();
-	UpdateTest();
+	//UpdateTest();
 	
 	cout << "ALL TESTS PASSED!!" << endl;
 	

@@ -3,7 +3,7 @@ struct DNode {
 	bool visited = false;
 	const GraphNode *node = nullptr;
 	
-	bool operator<(const DNode &other) const {
+	/*bool operator<(const DNode &other) const {
 		return pri < other.pri;
 	}
 
@@ -13,5 +13,5 @@ struct DNode {
 	
 	bool operator==(const DNode &other) const {
 		return node == other.node;
-	}
+	}*/
 };
