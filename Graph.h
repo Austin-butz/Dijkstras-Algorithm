@@ -40,9 +40,8 @@ class Graph{
 	public:
 		~Graph();
 	
-		GraphNode *AddNode(char key, int data);
-		GraphNode *AddNode(char key);
-		GraphEdge *AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight);
+		GraphNode *AddNode(char key, int data = 0);
+		GraphEdge *AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight = 0);
 		
 		string NodesToString() const;
 		string ToString() const;

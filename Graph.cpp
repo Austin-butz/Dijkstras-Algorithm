@@ -14,16 +14,6 @@ GraphNode * Graph::AddNode(char key, int data) {
     return temp;
 };
 
-GraphNode * Graph::AddNode(char key) {
-    GraphNode* temp = new GraphNode;
-    temp->key = key;
-    temp->data = 0;
-    DNode output;
-    output.node = temp;
-    this->nodes.push_back(output);
-    return temp;
-};
-
 GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) {
     vector<char> apl = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     unsigned int i = 0;
