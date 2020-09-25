@@ -15,13 +15,17 @@ GraphNode * Graph::AddNode(char key, int data) {
 };
 
 GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) {
-    cout << "start ";
-    /*size_t i;
+    cout << "START";
+    size_t i;
     if (edges.size() == 0) i = 0;
     else {
         for (i = 0; i < edges.size(); i++) {
             if (edges[i][0]->from->key == gn1->key) break;
         }
+    }
+    if (edges[i] == nullptr) {
+        vector<GraphEdge*> temp;
+        edges.push_back(temp);
     }
     cout << "loop over ";
     GraphEdge* temp = new GraphEdge;
@@ -29,7 +33,7 @@ GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) 
     temp->to = gn2;
     temp->weight = weight;
     edges[i].push_back(temp);
-    return temp;*/
+    return temp;
 };
 
 string Graph::NodesToString() const {

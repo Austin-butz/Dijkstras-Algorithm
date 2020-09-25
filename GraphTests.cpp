@@ -60,11 +60,11 @@ void TestAddEdge(){
 	
 	GraphNode *gn3 = g.AddNode('c', 9);
 	cout << "nodes: "  << g.NodesToString() << endl;
-	//cout << "graph: " << endl << g.ToString() << endl;
+	cout << "graph: " << endl << g.ToString() << endl;
 
 	assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
 	assert(g.ToString() == "a | \nb | \nc | \n");
-	cout << 'e';
+	
 	g.AddEdge(gn1, gn3, 2);
 	cout << "nodes: "  << g.NodesToString() << endl;
 	cout << "graph: " << endl << g.ToString() << endl;

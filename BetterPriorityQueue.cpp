@@ -2,6 +2,7 @@
 
 void BetterPriorityQueue::Update() {
 int i = 0;
+//use this->push not c.push_back
 };
 
 int BetterPriorityQueue::Contains(char key) {
