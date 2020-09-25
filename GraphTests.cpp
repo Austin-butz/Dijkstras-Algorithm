@@ -64,21 +64,21 @@ void TestAddEdge(){
 
 	assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
 	assert(g.ToString() == "a | \nb | \nc | \n");
-	
+
 	g.AddEdge(gn1, gn3, 2);
 	cout << "nodes: "  << g.NodesToString() << endl;
 	cout << "graph: " << endl << g.ToString() << endl;
-	/*assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
+	assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
 	assert(g.ToString() == "a | [(a:15)->(c:9) w:2]\nb | \nc | \n");
 	
 	g.AddEdge(gn3, gn2);
 	g.AddEdge(gn1, gn2, 8);
-	//cout << "nodes: "  << g.NodesToString() << endl;
-	//cout << "graph: " << endl << g.ToString() << endl;
+	cout << "nodes: "  << g.NodesToString() << endl;
+	cout << "graph: " << endl << g.ToString() << endl;
 	
-	assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
-	assert(g.ToString() == "a | [(a:15)->(c:9) w:2], [(a:15)->(b:12) w:8]\nb | \nc | [(c:9)->(b:12) w:0]\n");
-	*/
+	//assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
+	//assert(g.ToString() == "a | [(a:15)->(c:9) w:2], [(a:15)->(b:12) w:8]\nb | \nc | [(c:9)->(b:12) w:0]\n");
+	
 	cout << "PASSED!" << endl << endl;
 }
 

@@ -6,28 +6,26 @@ Graph::~Graph() {
 
 GraphNode * Graph::AddNode(char key, int data) {
     GraphNode* temp = new GraphNode;
+    GraphNode output;
     temp->key = key;
     temp->data = data;
-    DNode output;
-    output.node = temp;
+    output = *temp;
     nodes.push_back(output);
     return temp;
 };
 
 GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) {
-    cout << "START";
-    size_t i;
+    size_t i = NULL;
     if (edges.size() == 0) i = 0;
     else {
         for (i = 0; i < edges.size(); i++) {
             if (edges[i][0]->from->key == gn1->key) break;
         }
     }
-    if (edges[i] == nullptr) {
-        vector<GraphEdge*> temp;
-        edges.push_back(temp);
+    if (i == NULL || i == 0) {
+        vector<GraphEdge*> temp1;
+        edges.push_back(temp1);
     }
-    cout << "loop over ";
     GraphEdge* temp = new GraphEdge;
     temp->from = gn1;
     temp->to = gn2;
@@ -40,7 +38,7 @@ string Graph::NodesToString() const {
     string output(1, '[');
     size_t i = 0;
     do {
-        output.insert(output.size(), GraphNodeToString(nodes[i].node));
+        output.insert(output.size(), GraphNodeToString(&nodes[i]));
         if (i != nodes.size()-1) output.insert(output.size(), ", ");
         i += 1;
     } 
@@ -51,20 +49,29 @@ string Graph::NodesToString() const {
 
 string Graph::ToString() const {
     string output;
+    cout << nodes.size() << endl;
     for (size_t i = 0; i < nodes.size(); i++) { 
-        string temp(1, nodes[i].node->key);
+        //cout << "start loop ";
+        string temp(1, nodes[i].key);
         output.insert(output.size(), temp);
         output.insert(output.size(), " | ");
         if (edges.size() > i) {
-            if (edges[i][0]->from->key == nodes[i].node->key) {
+            //cout << "edge size: " << edges.size() << " > i: " << i << endl;
+            //vector<GraphEdge*> temp;
+            //edges.push_back(temp);
+            if (edges[i][0]->from->key == nodes[i].key) {
                 output.insert(output.size(), GraphEdgeToString(edges[i][0]));
-                for (size_t j = 1; j < edges[i].size(); j++) {
-                    output.insert(output.size(), ", ");
-                    output.insert(output.size(), GraphEdgeToString(edges[i][j]));
+                //cout << 'y' << endl;
+                if (edges[i].size() > 1) {
+                    for (size_t j = 1; j < edges[i].size(); j++) {
+                        //output.insert(output.size(), ", ");
+                        //output.insert(output.size(), GraphEdgeToString(edges[i][j]));
+                    }
                 }
             }
         }
         output.insert(output.size(), "\n");
+        cout << "graph so far: " << output << endl;
     }
     return output;
 }
@@ -108,7 +115,7 @@ const vector<GraphNode*>& Graph::GetNodes() const {
     vector<GraphNode*> output;
     for (size_t i = 0; i < nodes.size(); i++) {
         GraphNode* temp = new GraphNode;
-        temp->key = nodes[i].node->key;
+        temp->key = nodes[i].key;
         output.push_back(temp);
     }
     return output;

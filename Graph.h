@@ -56,7 +56,7 @@ class Graph{
 		size_t Size() const {size_t output = nodes.size(); return output;}
 
 	private:
-		vector<DNode> nodes;
+		vector<GraphNode> nodes;
 		vector<vector<GraphEdge*>> edges;
 
 };
