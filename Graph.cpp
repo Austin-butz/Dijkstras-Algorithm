@@ -16,7 +16,7 @@ GraphNode * Graph::AddNode(char key, int data) {
 
 GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) {
     vector<char> apl = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    unsigned int i = 0;
+    size_t i = 0;
     for (i; i < apl.size(); i++) if (apl[i] == gn1->key) break;
     GraphEdge* temp = new GraphEdge;
     temp->from = gn1;
@@ -28,7 +28,7 @@ GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) 
 
 string Graph::NodesToString() const {
     string output = "[";
-    unsigned int i;
+    size_t i;
     for (i = 0; i < nodes.size()-1; i++) {
         output.insert(output.size(), GraphNodeToString(nodes[i].node));
         output.insert(output.size(), ", ");
@@ -41,12 +41,12 @@ string Graph::NodesToString() const {
 
 string Graph::ToString() const {
     string output;
-    for (unsigned int i = 0; i < nodes.size(); i++) { 
+    for (size_t i = 0; i < nodes.size(); i++) { 
         output.insert(output.size(), to_string(nodes[i].node->key));
         output.insert(output.size(), " | ");
         if (edges[i][0]->from->key == nodes[i].node->key) {
             output.insert(output.size(), GraphEdgeToString(edges[i][0]));
-            for (unsigned int j = 1; j < edges[i].size(); j++) {
+            for (size_t j = 1; j < edges[i].size(); j++) {
                 output.insert(output.size(), ", ");
                 output.insert(output.size(), GraphEdgeToString(edges[i][j]));
             }
@@ -79,20 +79,20 @@ string Graph::GraphEdgeToString(GraphEdge const* ge) {
 const vector<GraphEdge*>& Graph::GetEdges(const GraphNode *gn) const {
     vector<GraphEdge*> output;
     vector<string> apl = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-    unsigned int i = 0;
+    size_t i = 0;
     for (i; i < apl.size(); i++) {
         if (apl[i] == to_string(gn->key)) break;
     }
-    for (unsigned int j = 0; j < edges[i].size(); j++) {
+    for (size_t j = 0; j < edges[i].size(); j++) {
         GraphEdge* temp = edges[i][j];
         output.push_back(temp);
     }
-    return output;
+    return edges[i];
 }
 
 const vector<GraphNode*>& Graph::GetNodes() const {
     vector<GraphNode*> output;
-    for (unsigned int i = 0; i < nodes.size(); i++) {
+    for (size_t i = 0; i < nodes.size(); i++) {
         GraphNode* temp = new GraphNode;
         temp->key = nodes[i].node->key;
         output.push_back(temp);
@@ -105,7 +105,7 @@ int i = 0;
 };
 
 int BetterPriorityQueue::Contains(DNode input) {
-    for (unsigned int i = 0; i < this->size(); i++) {
+    for (size_t i = 0; i < this->size(); i++) {
         if (c[i].node->key == input.node->key) {
             return i;
         }
