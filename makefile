@@ -1,3 +1,2 @@
 all:
-
-	g++ -Wall BPQTests.cpp Graph.cpp -o bpq
+	g++ -g -Wall Graph.cpp GraphTests.cpp -o graph-tests

@@ -1,7 +1,7 @@
 #include "Graph.h"
 
 Graph::~Graph() {
-    int i = 0;
+    cout << ' ';
 }
 
 GraphNode * Graph::AddNode(char key, int data) {
@@ -100,8 +100,8 @@ string Graph::GraphEdgeToString(GraphEdge const* ge) {
 const vector<GraphEdge*>& Graph::GetEdges(const GraphNode *gn) const {
     vector<GraphEdge*> output;
     vector<string> apl = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-    size_t i = 0;
-    for (i; i < apl.size(); i++) {
+    size_t i;
+    for (i = 0; i < apl.size(); i++) {
         if (apl[i] == to_string(gn->key)) break;
     }
     for (size_t j = 0; j < edges[i].size(); j++) {
@@ -122,7 +122,7 @@ const vector<GraphNode*>& Graph::GetNodes() const {
 }
 
 void BetterPriorityQueue::Update() {
-int i = 0;
+    cout << ' ';
 };
 
 int BetterPriorityQueue::Contains(DNode input) {
