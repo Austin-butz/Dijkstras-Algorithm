@@ -76,8 +76,8 @@ void TestAddEdge(){
 	cout << "nodes: "  << g.NodesToString() << endl;
 	cout << "graph: " << endl << g.ToString() << endl;
 	
-	//assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
-	//assert(g.ToString() == "a | [(a:15)->(c:9) w:2], [(a:15)->(b:12) w:8]\nb | \nc | [(c:9)->(b:12) w:0]\n");
+	assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
+	assert(g.ToString() == "a | [(a:15)->(c:9) w:2], [(a:15)->(b:12) w:8]\nb | \nc | [(c:9)->(b:12) w:0]\n");
 	
 	cout << "PASSED!" << endl << endl;
 }
