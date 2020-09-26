@@ -1,16 +1,10 @@
 #include "BetterPriorityQueue.h"
 
 void BetterPriorityQueue::Update() {
-    int i = 0;
     while (!this->empty()) {
         DNode temp = this->top();
         this->pop();
-        if (temp.visited == true) {
-            temp.pri = i;
-            this->push(temp);
-        }
-        else this->push(temp);
-        i += 1;
+        this->push(temp);
     }
 };
 
