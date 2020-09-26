@@ -63,12 +63,31 @@ string Graph::NodesToString() const {
     return output;
 }
 
+
+string vec_to_string(vector<GraphEdge*> vec){
+
+    if(vec.size() == 0){
+        return "[]";
+    }
+
+    string s = "[";
+    for(size_t i = 0; i < vec.size(); i++){
+        s = s + Graph::GraphEdgeToString(vec.at(i));
+        if( i < vec.size() - 1){
+            s = s + ", ";
+        }
+    }
+    s = s + "]";
+    return s;
+}
+
 string Graph::ToString() const {
     string output;
     //cout << nodes.size() << endl;
     for (size_t i = 0; i < nodes.size(); i++) { 
         //cout << "start loop ";
         string temp(1, nodes[i].key);
+        cout << "temp: " << temp << endl; // just checking what this variable is
         output.insert(output.size(), temp);
         output.insert(output.size(), " | ");
         if (edges.size() > i) {
@@ -76,7 +95,8 @@ string Graph::ToString() const {
             //vector<GraphEdge*> temp;
             //edges.push_back(temp);
             //cout << edges[i][0]->from->key;
-            if (edges[i][0]->from->key == nodes[i].key) {
+            cout << "vector: " << vec_to_string(edges[i]) << endl;
+            if ( (edges[i].size() != 0) && (edges[i][0]->from->key == nodes[i].key)) {
                 //cout << "i: " << i << " | " << edges[i][0]->from->key << nodes[i].key << endl;
                 output.insert(output.size(), GraphEdgeToString(edges[i][0]));
                 if (edges[i].size() > 1) {
@@ -130,6 +150,8 @@ const vector<GraphEdge*>& Graph::GetEdges(const GraphNode *gn) const {
 }
 
 const vector<GraphNode*>& Graph::GetNodes() const {
+    // why not just return the node vector (defined in Graph.h)
+    // private: vector<GraphNode> nodes;
     vector<GraphNode*> output;
     for (size_t i = 0; i < nodes.size(); i++) {
         GraphNode* temp = new GraphNode;
