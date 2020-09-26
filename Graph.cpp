@@ -1,7 +1,11 @@
 #include "Graph.h"
 
 Graph::~Graph() {
-    cout << ' ';
+    this->nodes.clear();
+    for (int i  = 0; i < edges.size(); i++) {
+        edges[i].clear();
+    }
+    edges.clear();
 }
 
 GraphNode * Graph::AddNode(char key, int data) {
@@ -16,36 +20,48 @@ GraphNode * Graph::AddNode(char key, int data) {
 
 GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) {
     cout << "start addedge" << endl;
-    size_t i = NULL;
-    size_t b;
+    size_t i = edges.size();
+    size_t b = 0;
     bool found = false;
-    if (edges.size() == 0) i = 0;
-    else {
-        for (b = 0; b < edges.size(); b++) {
+    if (edges.size() > 0) cout << "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE " << edges.size() << ' ' << (edges[b][0]->from->key == gn1->key) << endl;
+    /*if (edges.size() == 0) {
+        i = 0;
+    }*/
+    if (edges.size() > 0) {
+        cout << "big" << endl;
+        for (b; b < edges.size(); b++) {
+            cout << "here" << endl;
             if (edges[b][0]->from->key == gn1->key) {
-                //cout << edges[b][0]->from->key << " == " << gn1->key << endl;
+                cout << edges[b][0]->from->key << " == " << gn1->key << endl;
                 found = true;
                 break;
             }
         }
         //cout << "i found: " << b << endl << edges[b][0]->from->key << ' ' << gn1->key << endl;
     }
-    if (found == true) {
+    /*if (found == true) {
         //cout << "true" << endl;
         i = b;
-    }
-    else if (found == false || i == 0) {
-        //cout << "new " << found << ' ' << i << endl;
+    }*/
+    if (found == false || i == 0) {
+        cout << "new " << found << ' ' << i << endl;
         vector<GraphEdge*> *temp1 = new vector<GraphEdge*>;
         edges.push_back(*temp1);
-        if (i != 0) i = edges.size();
+        //if (i != 0) i = edges.size();
     }
     GraphEdge* temp = new GraphEdge;
-    //cout << "imp " << gn1->key << endl;
+    cout << "imp " << gn1->key << endl;
     temp->from = gn1;
     temp->to = gn2;
     temp->weight = weight;
+    cout << "what" << endl;
+    if (found == true) {
+        i = b;
+    }
+    cout << i << endl;
     edges[i].push_back(temp);
+    cout << "nvm" << endl;
+
     //cout << i << ' ' << GraphEdgeToString(edges[i].back()) << endl;
     return temp;
 };
@@ -86,18 +102,37 @@ string Graph::ToString() const {
     //cout << nodes.size() << endl;
     for (size_t i = 0; i < nodes.size(); i++) { 
         //cout << "start loop ";
-        string temp(1, nodes[i].key);
-        cout << "temp: " << temp << endl; // just checking what this variable is
+        //string temp(1, nodes[i].key);
+        //cout << "temp: " << temp << endl; // just checking what this variable is
+        /*string temp(1, nodes[i].key);
         output.insert(output.size(), temp);
-        output.insert(output.size(), " | ");
-        if (edges.size() > i) {
+        output.insert(output.size(), " | ");*/
+        string temp;
+        temp = temp + nodes[i].key;
+        temp = temp + " | ";
+        cout << "GGraph so far: " << output << endl;
+        output.insert(output.size(), temp);
+        size_t j = edges.size();
+        for (size_t b = 0; b < edges.size(); b++) if (edges[b][0]->from->key == nodes[i].key) {
+            j = b; 
+            break;
+        }
+        cout << j << endl;
+        if (j != edges.size()) {
+            cout << 'y' << endl;
+            for (size_t e = 0; e < edges[j].size(); e++) {
+                output.insert(output.size(), GraphEdgeToString(edges[j][e]));
+                if (e != edges[j].size()-1) output.insert(output.size(), ", ");
+            }
+        }
+        /*if (edges.size() > i) {
             //cout << "edge size: " << edges.size() << " > i: " << i << endl;
             //vector<GraphEdge*> temp;
             //edges.push_back(temp);
             //cout << edges[i][0]->from->key;
             cout << "vector: " << vec_to_string(edges[i]) << endl;
             if ( (edges[i].size() != 0) && (edges[i][0]->from->key == nodes[i].key)) {
-                //cout << "i: " << i << " | " << edges[i][0]->from->key << nodes[i].key << endl;
+                cout << "i: " << i << " | " << edges[i][0]->from->key << nodes[i].key << endl;
                 output.insert(output.size(), GraphEdgeToString(edges[i][0]));
                 if (edges[i].size() > 1) {
                     for (size_t j = 1; j < edges[i].size(); j++) {
@@ -106,7 +141,7 @@ string Graph::ToString() const {
                     }
                 }
             }
-        }
+        }*/
         output.insert(output.size(), "\n");
         cout << "graph so far: " << output << endl;
     }
@@ -136,7 +171,7 @@ string Graph::GraphEdgeToString(GraphEdge const* ge) {
 }
 
 const vector<GraphEdge*>& Graph::GetEdges(const GraphNode *gn) const {
-    vector<GraphEdge*> output;
+    /*vector<GraphEdge*> output;
     vector<string> apl = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
     size_t i;
     for (i = 0; i < apl.size(); i++) {
@@ -146,7 +181,16 @@ const vector<GraphEdge*>& Graph::GetEdges(const GraphNode *gn) const {
         GraphEdge* temp = edges[i][j];
         output.push_back(temp);
     }
-    return edges[i];
+    return edges[i];*/
+    size_t b = edges.size();
+    for (size_t i = 0; i < edges.size(); i++) {
+        if (edges[i][0]->from->key == gn->key) {
+            b = i;
+            break;
+        }
+    }
+    if (b != edges.size()) return edges[b];
+    else cout << "This GraphNode has no edges" << endl;
 }
 
 const vector<GraphNode*>& Graph::GetNodes() const {
@@ -162,7 +206,11 @@ const vector<GraphNode*>& Graph::GetNodes() const {
 }
 
 void BetterPriorityQueue::Update() {
-    cout << ' ';
+    for (size_t i = 0; i < this->size(); i++){
+        //DNode temp = this[0].node;
+        this->pop();
+        //this->push(temp);
+    }
 };
 
 int BetterPriorityQueue::Contains(DNode input) {
