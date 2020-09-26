@@ -1,8 +1,17 @@
 #include "BetterPriorityQueue.h"
 
 void BetterPriorityQueue::Update() {
-int i = 0;
-//use this->push not c.push_back
+    int i = 0;
+    while (!this->empty()) {
+        DNode temp = this->top();
+        this->pop();
+        if (temp.visited == true) {
+            temp.pri = i;
+            this->push(temp);
+        }
+        else this->push(temp);
+        i += 1;
+    }
 };
 
 int BetterPriorityQueue::Contains(char key) {

@@ -25,7 +25,7 @@ void ContainsTest() {
 
 
 
-/*void UpdateTest() {
+void UpdateTest() {
 	cout << "Testing Update Helper Method..." << endl;
 	
 	Graph g = Graph();
@@ -63,7 +63,7 @@ void ContainsTest() {
 	
 	
 	cout << "PASSED!" << endl;
-}*/
+}
 
 int main(){
 	

@@ -15,22 +15,38 @@ GraphNode * Graph::AddNode(char key, int data) {
 };
 
 GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) {
+    cout << "start addedge" << endl;
     size_t i = NULL;
+    size_t b;
+    bool found = false;
     if (edges.size() == 0) i = 0;
     else {
-        for (i = 0; i < edges.size(); i++) {
-            if (edges[i][0]->from->key == gn1->key) break;
+        for (b = 0; b < edges.size(); b++) {
+            if (edges[b][0]->from->key == gn1->key) {
+                //cout << edges[b][0]->from->key << " == " << gn1->key << endl;
+                found = true;
+                break;
+            }
         }
+        //cout << "i found: " << b << endl << edges[b][0]->from->key << ' ' << gn1->key << endl;
     }
-    if (i == NULL || i == 0) {
+    if (found == true) {
+        //cout << "true" << endl;
+        i = b;
+    }
+    else if (found == false || i == 0) {
+        //cout << "new " << found << ' ' << i << endl;
         vector<GraphEdge*> *temp1 = new vector<GraphEdge*>;
         edges.push_back(*temp1);
+        if (i != 0) i = edges.size();
     }
     GraphEdge* temp = new GraphEdge;
+    //cout << "imp " << gn1->key << endl;
     temp->from = gn1;
     temp->to = gn2;
     temp->weight = weight;
     edges[i].push_back(temp);
+    //cout << i << ' ' << GraphEdgeToString(edges[i].back()) << endl;
     return temp;
 };
 
@@ -59,9 +75,10 @@ string Graph::ToString() const {
             //cout << "edge size: " << edges.size() << " > i: " << i << endl;
             //vector<GraphEdge*> temp;
             //edges.push_back(temp);
+            //cout << edges[i][0]->from->key;
             if (edges[i][0]->from->key == nodes[i].key) {
+                //cout << "i: " << i << " | " << edges[i][0]->from->key << nodes[i].key << endl;
                 output.insert(output.size(), GraphEdgeToString(edges[i][0]));
-                //cout << 'y' << endl;
                 if (edges[i].size() > 1) {
                     for (size_t j = 1; j < edges[i].size(); j++) {
                         output.insert(output.size(), ", ");
@@ -71,7 +88,7 @@ string Graph::ToString() const {
             }
         }
         output.insert(output.size(), "\n");
-        //cout << "graph so far: " << output << endl;
+        cout << "graph so far: " << output << endl;
     }
     //cout << output;
     return output;

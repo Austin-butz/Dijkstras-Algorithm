@@ -70,7 +70,7 @@ void TestAddEdge(){
 	cout << "graph: " << endl << g.ToString() << endl;
 	assert(g.NodesToString() == "[(a:15), (b:12), (c:9)]");
 	assert(g.ToString() == "a | [(a:15)->(c:9) w:2]\nb | \nc | \n");
-	
+
 	g.AddEdge(gn3, gn2);
 	g.AddEdge(gn1, gn2, 8);
 	cout << "nodes: "  << g.NodesToString() << endl;
@@ -110,7 +110,7 @@ void TestDestructor(){
 */
 int main(){
 	
-	TestAddNode();
+	//TestAddNode();
 	TestAddEdge();
 	//TestDestructor();
 
