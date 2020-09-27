@@ -6,6 +6,12 @@
 
 using namespace std;
 
+//the time complexity of this algorithm mostly comes from its need to update/calculate priority and delete items from the queue. 
+//For updating the items, the time complexity of doing this for a sorted list like our queue is O(log(# of nodes)).
+//This needs to be done once per edge so the time complexity of updating is O((# of edges) log(# of nodes)).
+//For deleting an item, the time complexity is also O(log(# of nodes)) but this is only done per node, not per edge.
+//So the time complexity of deletion is is O((# of nodes) log(# of nodes)).
+//combining these we get a final time complexity of O(((# of edges)+(# of nodes)) log(# of nodes))
 
 int dijkstra(const GraphNode *start, const GraphNode *end, Graph *g){
 	BetterPriorityQueue q;
@@ -27,12 +33,6 @@ int dijkstra(const GraphNode *start, const GraphNode *end, Graph *g){
 			q.Update(temp2);
 
 		}
-		/*vector<GraphEdge*> temp;
-		temp.assign(g->GetEdges(q.top().node));
-		int temp2 = q.top().pri;
-		for (size_t i = 0; i < temp.size(); i++) {
-			if (temp[i]->to)
-		}*/
 		q.pop();
 	}
 	return q.top().pri;
