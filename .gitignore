@@ -1,4 +1,11 @@
-bpq
+.vscode
 a.out
 bpq
-.vscode
+BPQTests.cpp
+dij
+DNode_struct.h
+graph-tests
+GraphTests.cpp
+temp.cpp
+temp.h
+temptest.cpp

@@ -205,7 +205,7 @@ const vector<GraphNode*>& Graph::GetNodes() const {
     return output;
 }
 
-void BetterPriorityQueue::Update() {
+/*void BetterPriorityQueue::Update() {
     for (size_t i = 0; i < this->size(); i++){
         //DNode temp = this[0].node;
         this->pop();
@@ -221,4 +221,4 @@ int BetterPriorityQueue::Contains(DNode input) {
     }
     cout << "No node with given key in queue" << endl;
     return NULL;
-};
+};*/

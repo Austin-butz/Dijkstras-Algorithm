@@ -4,6 +4,8 @@
 #include <climits>
 #include <iostream>
 using namespace std;
+#ifndef GRAPH_H
+#define GRAPH_H
 
 struct GraphNode {
 	char key;
@@ -17,7 +19,7 @@ struct GraphEdge {
 	unsigned int weight;
 };
 
-struct DNode {
+/*struct DNode {
 	int pri = INT_MAX;
 	bool visited = false;
 	const GraphNode *node = nullptr;
@@ -33,7 +35,7 @@ struct DNode {
 	bool operator==(const DNode &other) const {
 		return node == other.node;
 	}
-};
+};*/
 
 class Graph{
 	
@@ -52,8 +54,9 @@ class Graph{
 		
 		const vector<GraphEdge*>& GetEdges(const GraphNode *gn) const;
 		const vector<GraphNode*>& GetNodes() const;
-		//const GraphNode* NodeAt(unsigned int idx) const {GraphNode* temp = &nodes[idx].node; return temp;}
-		size_t Size() const {size_t output = nodes.size(); return output;}
+		const GraphNode* NodeAt(unsigned int idx) const {return &nodes[idx];}
+		size_t Size() const {return nodes.size();}
+		//size_t EdgesSize() const {return edges.size();}
 
 	private:
 		vector<GraphNode> nodes;
@@ -61,8 +64,9 @@ class Graph{
 
 };
 
-class BetterPriorityQueue: public priority_queue<DNode, vector<DNode>, greater<DNode>>::priority_queue {
+/*class BetterPriorityQueue: public priority_queue<DNode, vector<DNode>, greater<DNode>>::priority_queue {
 	public:
 		void Update();
 		int Contains(DNode input);
-};
+};*/
+#endif

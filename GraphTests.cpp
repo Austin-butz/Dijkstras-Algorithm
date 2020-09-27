@@ -110,7 +110,7 @@ void TestDestructor(){
 */
 int main(){
 	
-	//TestAddNode();
+	TestAddNode();
 	TestAddEdge();
 	//TestDestructor();
 
