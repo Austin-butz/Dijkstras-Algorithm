@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "ostream": "cpp",
-        "*.tcc": "cpp",
-        "deque": "cpp",
-        "unordered_map": "cpp",
-        "iostream": "cpp"
-    }
-}
