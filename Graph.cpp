@@ -2,10 +2,14 @@
 
 Graph::~Graph() {
     this->nodes.clear();
-    for (int i  = 0; i < edges.size(); i++) {
-        edges[i].clear();
+    for (size_t i  = 0; i < edges.size(); i++) {
+        for (size_t b = 9; b < edges[i].size(); b++) {
+            delete this->edges[i][b]->from;
+            delete this->edges[i][b]->to;
+            this->edges[i].clear();
+        }
     }
-    edges.clear();
+    this->edges.clear();
 }
 
 GraphNode * Graph::AddNode(char key, int data) {
@@ -22,7 +26,7 @@ GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) 
     size_t i = edges.size();
     size_t b = 0;
     bool found = false;
-    if (edges.size() > 0) {
+    if (edges.size() > 0) {//as long as the list isnt empty, check for an already existing list for this node
         for (b; b < edges.size(); b++) {
             if (edges[b][0]->from->key == gn1->key) {
                 found = true;
@@ -30,7 +34,7 @@ GraphEdge * Graph::AddEdge(GraphNode *gn1, GraphNode *gn2, unsigned int weight) 
             }
         }
     }
-    if (found == false || i == 0) {
+    if (found == false || i == 0) {//if this is the first edge for a given node, a new vector of graphedge pointers is added to the end of the list
         vector<GraphEdge*> *temp1 = new vector<GraphEdge*>;
         edges.push_back(*temp1);
     }
@@ -128,7 +132,7 @@ const vector<GraphEdge*>& Graph::GetEdges(const GraphNode *gn) const {
             break;
         }
     }
-    if (b != edges.size()) return edges[b];
+    return edges[b];
 }
 
 const vector<GraphNode*>& Graph::GetNodes() const {

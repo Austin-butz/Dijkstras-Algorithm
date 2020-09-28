@@ -11,7 +11,7 @@ void BetterPriorityQueue::Update(DNode input) {
 };
 
 int BetterPriorityQueue::Contains(char key) {
-    for (int i = 0; i < this->size(); i++) {
+    for (size_t i = 0; i < this->size(); i++) {
         if (c[i].node->key == key) {
             return i;
         }

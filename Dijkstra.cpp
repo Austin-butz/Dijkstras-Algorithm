@@ -15,14 +15,14 @@ using namespace std;
 
 int dijkstra(const GraphNode *start, const GraphNode *end, Graph *g){
 	BetterPriorityQueue q;
-	for (int i = 0; i < g->Size(); i++) {
+	for (size_t i = 0; i < g->Size(); i++) {
 		DNode temp;
 		temp.node = g->NodeAt(i);
 		if (g->NodeAt(i)->key == start->key) temp.pri = 0;
 		q.push(temp);
 	}
 	int b = 0;
-	while (q.size() > 0 && q.top().node->key != end->key) {
+	while (q.size() > 0 && q.top().node->key != end->key) {//finds and updates new priorities, then removes the smallest item
 		cout << '(' << q.top().node->key << ": " << q.top().pri << ')' << endl; 
 		b += 1;
 		vector<GraphEdge*> temp = g->GetEdges(q.top().node);
